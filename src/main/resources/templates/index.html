@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http//www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewpoint" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>List </title>
+</head>
+<body>
+
+hello
+<div class="container">
+    <form method="post" th:action="@{/}" th:object="${item}">
+        <div class="input-group mb-3 mt-3">
+            <input type="text" th:field="*{name}" class="form-control" placeholder="Название новой покупки"
+                   aria-label="Название новой покупки" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="submit">Добавить</button>
+            </div>
+        </div>
+    </form>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Название</th>
+            <th scope="col">Действия</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item : ${items}">
+            <th scope="row" th:text="${item.id}">1</th>
+            <td th:text="${item.name}">Кофе</td>
+            <td>
+                <form th:action="@{/{id}(id=${item.id})}" th:method="delete">
+                    <button type="submit" class="btn btn-outline-danger">Удалить</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+</body>
+</html>
